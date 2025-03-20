@@ -41,8 +41,8 @@ int main(int argc, char *argv[]) {
     int running = 1; //todo remove this?
     SDL_Event event;
     int last_mouse_x = -1, last_mouse_y = -1;
-int count=0;
-	SDL_Delay(500);
+    int count=0;
+    SDL_Delay(500);
 
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -50,20 +50,20 @@ int count=0;
                 || event.type == SDL_MOUSEBUTTONDOWN
                 || event.type == SDL_QUIT)
             {
-		SDL_Log("key mbtn quit");
+        SDL_Log("key mbtn quit");
                 running = 0;
                 break;
             }
             if (event.type == SDL_MOUSEMOTION) {
                 int x = event.motion.x;
                 int y = event.motion.y;
-		SDL_Log("motion");
-		SDL_Log("%d", last_mouse_x);
-		SDL_Log("%d", last_mouse_y);
-		SDL_Log("%d", x);
-		SDL_Log("%d", y);
-		// count is needed since the lounge keyboard sends mouse movement
-		// after keypresses (?), making this hard to test
+        SDL_Log("motion");
+        SDL_Log("%d", last_mouse_x);
+        SDL_Log("%d", last_mouse_y);
+        SDL_Log("%d", x);
+        SDL_Log("%d", y);
+        // count is needed since the lounge keyboard sends mouse movement
+        // after keypresses (?), making this hard to test
                 if (last_mouse_x != -1 && last_mouse_y != -1 && count++ > 10 &&
                     (x != last_mouse_x || y != last_mouse_y)) {
                     running = 0;
