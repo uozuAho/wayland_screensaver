@@ -19,5 +19,11 @@ sudo apt update
 sudo apt install libsdl2-dev
 
 # make sure the screen res is correct in screensaver.c
-./refresh.sh
+
+# test the screensaver works:
+./run_screensaver.sh
+
+# Run a service that runs the screensaver on inactivity.
+# Set inactivity timeout in service.sh: TIMEOUT_MS
+./install_or_update.sh
 ```
