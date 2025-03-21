@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 gcc -o screensaver screensaver.c -lSDL2
 cp screensaver.service ~/.config/systemd/user/
 mkdir -p ~/.icons/hidden_cursor/cursors

@@ -14,6 +14,11 @@ void draw_random_pixel(SDL_Renderer *renderer) {
     SDL_RenderDrawPoint(renderer, x, y);
 }
 
+void fill_screen(SDL_Renderer *renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
+    SDL_SetRenderDrawColor(renderer, r, g, b, a);
+    SDL_RenderFillRect(renderer, NULL);
+}
+
 int main(int argc, char *argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
@@ -86,9 +91,12 @@ int main(int argc, char *argv[]) {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        // occasionally draw a random pixel to prevent the screen detecting
-        // inactivity and doing its own screensaver
-        if (render_count % 300 == 0) draw_random_pixel(renderer);
+        // Occasionally draw a random pixel to prevent the screen detecting
+        // inactivity and doing its own screensaver. Not enough to fool my TV.
+        // if (render_count % 300 == 0) draw_random_pixel(renderer);
+
+        // Try a full screen of dark grey
+        if (render_count % 300 == 0) fill_screen(renderer, 1, 1, 1, 0);
 
         SDL_RenderPresent(renderer);
         render_count++;
